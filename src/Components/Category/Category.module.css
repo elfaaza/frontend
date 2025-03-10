@@ -1,0 +1,38 @@
+.category_wrapper {
+    display: flex; /* Pastikan elemen sejajar horizontal */
+    justify-content: center; /* Tengah secara horizontal */
+    align-items: center; /* Tengah secara vertikal */
+    gap: 30px; /* Jarak antar elemen */
+    width: 100%; /* Pastikan wrapper memiliki lebar penuh */
+    flex-wrap: wrap; /* Jika tidak muat, akan turun ke bawah */
+    padding: 20px;
+    padding-top: 70px;
+    grid-template-columns: repeat(3,1fr);
+}
+
+.category_item {
+    text-align: center; /* Agar teks di bawah gambar tetap rapi */
+}
+
+.category_item img {
+    width: 150px; /* Atur ukuran gambar */
+    height: auto;
+    transition: transform 0.3s ease-in-out;
+    cursor: pointer; /* Ubah kursor saat hover */
+}
+
+.category_item img:hover {
+    transform: scale(1.1); /* Efek zoom saat hover */
+}
+
+@media screen and (max-width:768px) {
+    .category_wrapper {
+        grid-template-columns: repeat(2,1fr);
+    }
+}
+
+@media screen and (max-width:500px) {
+    .category_wrapper {
+        grid-template-columns: repeat(1,1fr);
+    }
+}

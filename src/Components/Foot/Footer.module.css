@@ -1,0 +1,228 @@
+.footer_wrapper {
+    background-color: #b58572;
+    padding: 40px 5% !important;
+    margin-top: 50px;
+}
+
+.top_container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    padding: 20px 0;
+    border-bottom: 0.2px solid rgba(255, 255, 255, 0.1);
+}
+
+.top_container .logo a {
+    font-size: 24px;
+    color: #fff;
+    font-weight: 700;
+    font-family: 'Newsreader';
+}
+
+.top_container .logo a span {
+    color: black;
+    font-weight: 700;
+    font-size: 26px;
+    font-family: 'Newsreader';
+}
+
+.top_container .social {
+    display: flex;
+    gap: 17px;
+}
+
+.top_container .social i {
+    height: 40px;
+    width: 40px;
+    font-size: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff;
+    color: #b58572;
+    border-radius: 50%;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.top_container .social i:hover {
+    background-color: #5c2614;
+    color: #fff;
+    cursor: pointer;
+}
+
+.bottom_container {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    padding-bottom: 20px;
+}
+
+.bottom_container .footerLinks {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    text-align: center;
+}
+
+.bottom_container .footerLinks h4 {
+    color: #fff;
+    font-size: 20px;
+}
+
+.bottom_container .footerLinks h3 {
+    color: #ffffff;
+    font-size: 18px;
+    padding-top: 3px;
+}
+
+.bottom_container .footerLinks ul li a {
+    color: #5c2614;
+    font-weight: 400;
+    font-size: 14px;
+    transition: color 0.3s ease;
+}
+
+.bottom_container .footerLinks ul li a:hover {
+    color: #fff;
+}
+
+.bottom_container .footerLinks ul {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 10px;
+}
+
+.bottom_container .footerLinks p {
+    color: #5c2614;
+    font-weight: 400;
+    font-size: 14px;
+}
+
+.inputWrapper {
+    height: 35px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.inputWrapper input {
+    width: 100%;
+    height: 40px;
+    padding: 5px;
+    border: none;
+    outline: none;
+    border-radius: 20px;
+    background-color: #fff;
+}
+
+.button {
+    width: 100%;
+    height: 42px;
+    border-radius: 30px;
+    background: linear-gradient(270deg, #a8613b, #5c2614);
+    color: #ffffff;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.button:hover {
+    background: linear-gradient(270deg, #5c2614, #a8613b);
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+    .footer_wrapper {
+        padding: 60px 10% !important;
+    }
+
+    .top_container {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    .bottom_container {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 30px;
+    }
+
+    .bottom_container .footerLinks {
+        text-align: left;
+    }
+
+    .inputWrapper {
+        flex-direction: row;
+    }
+
+    .inputWrapper input {
+        width: 60%;
+    }
+
+    .button {
+        width: 35%;
+    }
+}
+
+@media (min-width: 1025px) {
+    .footer_wrapper {
+        padding: 80px 13% !important;
+    }
+
+    .top_container {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    .bottom_container {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 35px;
+    }
+
+    .bottom_container .footerLinks {
+        text-align: left;
+    }
+
+    .inputWrapper {
+        flex-direction: row;
+    }
+
+    .inputWrapper input {
+        width: 150px;
+    }
+
+    .button {
+        width: 150px;
+    }
+
+    .top_container .logo a {
+        font-size: 28px;
+    }
+
+    .top_container .logo a span {
+        font-size: 30px;
+    }
+
+    .bottom_container .footerLinks h4 {
+        font-size: 18px;
+    }
+
+    .bottom_container .footerLinks h3 {
+        font-size: 16px;
+    }
+
+    .bottom_container .footerLinks ul li a {
+        font-size: 14px;
+    }
+
+    .bottom_container .footerLinks p {
+        font-size: 14px;
+    }
+}

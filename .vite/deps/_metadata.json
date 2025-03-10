@@ -1,0 +1,52 @@
+{
+  "hash": "ce0fa77c",
+  "configHash": "acfe8974",
+  "lockfileHash": "f1d137dc",
+  "browserHash": "4d973b11",
+  "optimized": {
+    "react": {
+      "src": "../../node_modules/react/index.js",
+      "file": "react.js",
+      "fileHash": "69585f5c",
+      "needsInterop": true
+    },
+    "react-dom/client": {
+      "src": "../../node_modules/react-dom/client.js",
+      "file": "react-dom_client.js",
+      "fileHash": "cd744970",
+      "needsInterop": true
+    },
+    "react-scroll": {
+      "src": "../../node_modules/react-scroll/modules/index.js",
+      "file": "react-scroll.js",
+      "fileHash": "7a59dcda",
+      "needsInterop": true
+    },
+    "swiper/modules": {
+      "src": "../../node_modules/swiper/modules/index.mjs",
+      "file": "swiper_modules.js",
+      "fileHash": "9a9ac34d",
+      "needsInterop": false
+    },
+    "swiper/react": {
+      "src": "../../node_modules/swiper/swiper-react.mjs",
+      "file": "swiper_react.js",
+      "fileHash": "ab719023",
+      "needsInterop": false
+    }
+  },
+  "chunks": {
+    "chunk-DNLHEKFE": {
+      "file": "chunk-DNLHEKFE.js"
+    },
+    "chunk-NVAVHLZZ": {
+      "file": "chunk-NVAVHLZZ.js"
+    },
+    "chunk-XLOWEJT4": {
+      "file": "chunk-XLOWEJT4.js"
+    },
+    "chunk-5WRI5ZAA": {
+      "file": "chunk-5WRI5ZAA.js"
+    }
+  }
+}
