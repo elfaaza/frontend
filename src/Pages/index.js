@@ -12,7 +12,7 @@ import CreateRecipe from './CreateRecipe/CreateRecipe'
 import UpdateRecipe from './UpdateRecipe.jsx/UpdateRecipe'
 import CreateEvent from './CreateEvent.jsx/CreateEvent'
 import RecipeApp from '../Recipe/RecipeApp'
-import Breakfast from '../Recipe/breakfast'
+import Breakfast from '../Recipe/Breakfast'
 
 export {
     Home,
