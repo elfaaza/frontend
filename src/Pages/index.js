@@ -11,6 +11,8 @@ import DetailEvent from './DetailEvent/DetailEvent'
 import CreateRecipe from './CreateRecipe/CreateRecipe'
 import UpdateRecipe from './UpdateRecipe.jsx/UpdateRecipe'
 import CreateEvent from './CreateEvent.jsx/CreateEvent'
+import RecipeApp from '../Recipe/RecipeApp'
+import Breakfast from '../Recipe/breakfast'
 
 export {
     Home,
@@ -25,5 +27,7 @@ export {
     DetailEvent,
     CreateRecipe,
     UpdateRecipe,
-    CreateEvent
+    CreateEvent,
+    RecipeApp,
+    Breakfast
 }

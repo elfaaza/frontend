@@ -36,3 +36,9 @@
         grid-template-columns: repeat(1,1fr);
     }
 }
+
+@media screen and (max-width:480px) {
+    .category_wrapper{
+        margin-left: 35px;
+    }
+}

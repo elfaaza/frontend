@@ -138,16 +138,29 @@
         border-width: 1px;
         width: 100%;
     }
-
-@media screen and (max-width:768px) {
-    .nav_btns .LoginBtn{
-        display: none;
-     }
-    }
+}
 
 @media screen and (max-width:580px) {
     .nav_btns .search_wrapper {
         display: none;
     }
 }
+
+
+@media screen and (max-width:480px) {
+    .Nav_wrapper .logo a{
+        font-size: 20px;
+    }
+    
+    .nav_btns {
+        flex-direction: row;
+        align-items: center;
+        gap: 5px;
+    }
+
+    
+    
+    .nav_btns .LoginBtn{
+        display: flex;
+    }
 }

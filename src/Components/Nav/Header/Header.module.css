@@ -82,3 +82,17 @@
         padding: 20px;
     }
 }
+
+@media screen and (max-width:480px) {
+    .imageContainer h2 {
+        font-size: 32px;
+        line-height: 40px;
+    }
+
+    .imageContainer {
+        height: 300px;
+        width: 450px;
+        padding: 20px;
+        margin-left: 10px;
+    }
+}

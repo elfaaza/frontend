@@ -169,7 +169,6 @@ const CreateRecipe = () => {
             accept="image/*"
             className="w-full border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-[#a8613b]"
             onChange={(e) => handleChange(e, null, "image")}
-            required
           />
         </div>
 

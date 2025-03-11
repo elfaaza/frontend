@@ -226,3 +226,9 @@
         font-size: 14px;
     }
 }
+
+@media screen and (max-width:480px) {
+    .footer_wrapper{
+        width: 510px;
+    }
+}

@@ -25,7 +25,7 @@ const Nav = ({ setShowLogin }) => {
                 const response = await fetch("http://127.0.0.1:8000/api/me", {
                     method: "GET",
                     headers: {
-                        Authorization: `Bearer ${token}`,
+                        "Authorization": `Bearer ${token}`,
                         "Content-Type": "application/json",
                     },
                 });
@@ -112,17 +112,17 @@ const Nav = ({ setShowLogin }) => {
             </ul>
 
             <div className={navCSS.nav_btns}>
-                <div className="relative">
+                <div className="relative max-w-md sm:max-w-sm xs:max-w-xs">
                     <input
                         type="text"
                         placeholder="Search recipes ..."
                         value={searchQuery}
                         onChange={handleSearchChange}
-                        className="border p-2 rounded-lg w-56"
+                        className="border p-2 rounded-lg w-full"
                     />
 
                     {searchQuery && (
-                        <div className="absolute left-0 mt-1 w-56 bg-white border rounded-lg shadow-lg">
+                        <div className="absolute left-0 mt-1 w-full bg-white border rounded-lg shadow-lg">
                             {loadingSearch ? (
                                 <p className="p-2 text-gray-500">Loading...</p>
                             ) : searchResults.length > 0 ? (
@@ -153,7 +153,7 @@ const Nav = ({ setShowLogin }) => {
                         </div>
 
                         {dropdownOpen && (
-                            <div className="absolute right-0 mt-2 w-44 bg-white rounded-lg shadow-lg border">
+                            <div className="absolute left-0 mt-2 w-full bg-white rounded-lg shadow-lg border">
                                 <button
                                     onClick={handleLogout}
                                     className="flex items-center gap-2 w-full px-4 py-2 text-sm text-red-600 hover:bg-gray-100 transition"

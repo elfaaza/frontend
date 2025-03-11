@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import './App.css';
 import { Route, Routes, Outlet, useLocation } from 'react-router-dom';
-import { Home, Blogs, Recipe, Event, Login, Register, DetailRecipe, DetailBlog, DetailEvent, CreateRecipe, UpdateRecipe, CreateEvent } from './Pages';
+import { Home, Blogs, Recipe, Event, Login, Register, DetailRecipe, DetailBlog, DetailEvent, CreateRecipe, UpdateRecipe, RecipeApp, CreateEvent, Breakfast} from './Pages';
 import ContentRoutes from './Routes/ContentRoutes';
 import PrivaRoutes from './Routes/PrivaRoutes';
 
@@ -34,6 +34,9 @@ function App() {
           <Route path="/event/:id" element={<DetailEvent />} />
           <Route path="/recipe/:id" element={<DetailRecipe />} />
           <Route path="/recipe/edit/:id" element={<UpdateRecipe />} />
+
+          <Route path="/recipe/:category" element={<RecipeApp />} />
+          <Route path="/recipe/breakfast" element={<Breakfast />} />
         </Route>
       </Route>
     </Routes>

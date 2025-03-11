@@ -73,3 +73,14 @@
       grid-template-columns: repeat(1, 1fr);
     }
   }
+
+  @media screen and (max-width:480px) {
+    .search_wrapper {
+      width: 510px;
+      position: relative;
+    }
+
+    .Cards {
+      grid-template-columns: repeat(1, 1fr);
+    }
+  }
