@@ -31,8 +31,8 @@ const CategoryWrapper = () => {
       </div>
 
       <div className={categoryCSS.category_item}>
-        <Link to="/recipe/snack">
-          <img src={category04} alt="Snack" />
+        <Link to="/recipe/beverage">
+          <img src={category04} alt="Beverage" />
         </Link>
       </div>
 
@@ -43,8 +43,8 @@ const CategoryWrapper = () => {
       </div>
 
       <div className={categoryCSS.category_item}>
-        <Link to="/recipe/drink">
-          <img src={category06} alt="Drink" />
+        <Link to="/recipe/snack">
+          <img src={category06} alt="Snack" />
         </Link>
       </div>
     </div>
