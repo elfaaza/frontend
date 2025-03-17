@@ -1,12 +1,12 @@
 import { useState } from "react";
 
 const categories = [
-  { name: "Breakfast", 1: "breakfast" },
-  { name: "Lunch", 2: "lunch" },
-  { name: "Dinner", 3: "dinner" },
-  {name: "Beverage", 4: "beverage"},
-  { name: "Dessert", 5: "dessert" },
-  {name: "Snack", 6: "snack"},
+  { name: "Breakfast", id: "breakfast" },
+  { name: "Lunch", id: "lunch" },
+  { name: "Dinner", id: "dinner" },
+  {name: "Beverage", id: "beverage"},
+  {name: "Dessert", id: "dessert"},
+  {name: "Snack", id: "snack"},
 ];
 
 export default function RecipeApp() {
