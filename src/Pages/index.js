@@ -13,6 +13,11 @@ import UpdateRecipe from './UpdateRecipe.jsx/UpdateRecipe'
 import CreateEvent from './CreateEvent.jsx/CreateEvent'
 import RecipeApp from '../Recipe/RecipeApp'
 import Breakfast from '../Recipe/Breakfast'
+import Lunch from '../Recipe/Lunch'
+import Dinner from '../Recipe/Dinner'
+import Beverage from '../Recipe/Beverage'
+import Dessert from '../Recipe/Dessert'
+import Snack from '../Recipe/Snack'
 
 export {
     Home,
@@ -29,5 +34,10 @@ export {
     UpdateRecipe,
     CreateEvent,
     RecipeApp,
-    Breakfast
+    Breakfast,
+    Lunch,
+    Dinner,
+    Beverage,
+    Dessert,
+    Snack
 }
