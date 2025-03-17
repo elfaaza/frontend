@@ -175,7 +175,7 @@ const DetailRecipe = () => {
           Dibuat oleh: <span className="font-semibold">{recipe.chef || "Tidak diketahui"}</span>
         </p>
         <p className="text-lg">
-          Kategori: <span className="font-semibold">{categoryLabels[recipe.category] || "Tidak diketahui"}</span>
+          Kategori: <span className="font-semibold">{categoryLabels[recipe.category] || "Loading..."}</span>
         </p>
       </div>
 
