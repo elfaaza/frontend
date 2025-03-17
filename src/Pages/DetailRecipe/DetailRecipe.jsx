@@ -50,14 +50,15 @@ const DetailRecipe = () => {
         const stepsRes = await fetch(`http://127.0.0.1:8000/api/recipe-steps`, { headers });
         if (stepsRes.ok) {
           const stepsData = await stepsRes.json();
-          const filteredSteps = stepsData.data.filter((step) => step.recipe === recipeData.data.title);
+          const filteredSteps = stepsData.data.filter((step) => step.recipe_id == id);
           setSteps(filteredSteps);
         }
 
         const reviewsRes = await fetch(`http://127.0.0.1:8000/api/recipe-reviews`, { headers });
         if (reviewsRes.ok) {
           const reviewsData = await reviewsRes.json();
-          setReviews(reviewsData.data);
+          const filteredReviews = reviewsData.data.filter((review) => review.recipe_id == id);
+          setReviews(filteredReviews);
         }
 
         setLoading(false);
@@ -174,7 +175,7 @@ const DetailRecipe = () => {
           Dibuat oleh: <span className="font-semibold">{recipe.chef || "Tidak diketahui"}</span>
         </p>
         <p className="text-lg">
-          Kategori: <span className="font-semibold">{categoryLabels[recipe.category_id] || "Tidak diketahui"}</span>
+          Kategori: <span className="font-semibold">{categoryLabels[recipe.category] || "Tidak diketahui"}</span>
         </p>
       </div>
 
@@ -210,7 +211,7 @@ const DetailRecipe = () => {
                   {step.instruction}
                   {step.image && (
                     <img
-                      src={step.image}
+                      src={"http://localhost:8000/storage/"+step.image}
                       alt={`Langkah ${step.step_no}`}
                       className="mt-2 w-full max-w-xs rounded-lg shadow-sm"
                     />
@@ -240,33 +241,30 @@ const DetailRecipe = () => {
       )}
 
       <div className="mt-6 bg-white p-6 rounded-lg shadow-md">
-        <h2 className="text-2xl font-bold text-[#a8613b] mb-4">Komentar</h2>
-        {reviews && reviews.length > 0 ? (
-          reviews
-            .filter((review) => review.recipe_id === currentRecipeId)
-            .map((review, index) => (
-              <div key={index} className="border p-4 rounded-lg shadow-sm bg-gray-50 mb-4">
-                <p className="font-semibold text-gray-800">
-                  {review?.user ? review.user : "Pengguna tidak diketahui"}
-                </p>
-                <p className="text-gray-700 mt-2">{review?.content || "Tidak ada komentar."}</p>
-                {review?.image && (
-                  <img
-                    src={review.image}
-                    alt="Komentar"
-                    className="mt-2 w-full max-w-xs rounded-lg shadow-sm"
-                  />
-                )}
-                {user?.role === "admin" && (
-                  <button
-                    onClick={() => handleDeleteComment(review?.id)}
-                    className="text-red-500 text-sm mt-2 hover:text-red-700"
-                  >
-                    Hapus
-                  </button>
-                )}
-              </div>
-            ))
+        <h2 className="text-2x1 font-bold text-[#a8613b] mb-4">Komentar</h2>
+
+        {reviews.length > 0 ? (
+          reviews.map((review, index) => (
+            <div key={index} className="border p-4 rounded-lg shadow-sm bg-gray-50 mb-4">
+            <p className="font-semibold text-gray-800">
+              {review?.user.name ? review.user.name : "Pengguna tidak diketahui"}
+            </p>
+            <p className="text-gray-700 mt-2">{review?.content || "Tidak ada komentar."}</p>
+            {review?.image && (
+              <img
+              src={review.image}
+              alt="komentar"
+              className="mt-2 w-full max-w-xs rounded-lg shadow-sm"
+              />
+            )}
+            {user?.role === "admin" && (
+              <button onClick={() => handleDeleteComment(review.id)}
+              className="text-red-500 text-sm mt-2 hover:text-red-700">
+                Hapus
+              </button>
+            )}
+            </div>
+          ))
         ) : (
           <p className="text-gray-500">Belum ada komentar.</p>
         )}

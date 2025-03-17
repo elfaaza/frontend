@@ -57,68 +57,86 @@ const UpdateRecipe = () => {
 
   const handleChange = (e, index, field) => {
     if (field === "image") {
-      setFormData({ ...formData, image: e.target.files[0] });
+      setFormData((prev) => ({ ...prev, image: e.target.files[0] }));
     } else if (field === "ingredient") {
-      const newIngredients = [...formData.ingredients];
-      newIngredients[index] = e.target.value;
-      setFormData({ ...formData, ingredients: newIngredients });
+      setFormData((prev) => {
+        const newIngredients = [...prev.ingredients];
+        newIngredients[index] = e.target.value;
+        return { ...prev, ingredients: newIngredients };
+      });
     } else if (field === "step") {
-      const newSteps = [...formData.steps];
-      newSteps[index][e.target.name] =
-        e.target.name === "image" ? e.target.files[0] : e.target.value;
-      setFormData({ ...formData, steps: newSteps });
+      setFormData((prev) => {
+        const newSteps = [...prev.steps];
+        newSteps[index] = {
+          ...newSteps[index],
+          [e.target.name]: e.target.name === "image" ? e.target.files[0] : e.target.value,
+        };
+        return { ...prev, steps: newSteps };
+      });
     } else {
-      setFormData({ ...formData, [e.target.name]: e.target.value });
+      setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
     }
   };
 
   const handleAddIngredient = () => {
-    setFormData({ ...formData, ingredients: [...formData.ingredients, ""] });
+    setFormData((prev) => ({
+      ...prev,
+      ingredients: [...prev.ingredients, ""],
+    }));
   };
 
   const handleRemoveIngredient = (index) => {
-    const newIngredients = [...formData.ingredients];
-    newIngredients.splice(index, 1);
-    setFormData({ ...formData, ingredients: newIngredients });
-  };
-
-  const handleAddStep = () => {
-    setFormData({
-      ...formData,
-      steps: [...formData.steps, { instruction: "", image: null }],
+    setFormData((prev) => {
+      const newIngredients = prev.ingredients.filter((_, i) => i !== index);
+      return { ...prev, ingredients: newIngredients };
     });
   };
 
+  const handleAddStep = () => {
+    setFormData((prev) => ({
+      ...prev,
+      steps: [...prev.steps, { instruction: "", image: null }],
+    }));
+  };
+
   const handleRemoveStep = (index) => {
-    const newSteps = [...formData.steps];
-    newSteps.splice(index, 1);
-    setFormData({ ...formData, steps: newSteps });
+    setFormData((prev) => {
+      const newSteps = prev.steps.filter((_, i) => i !== index);
+      return { ...prev, steps: newSteps };
+    });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
 
+    if (!id) {
+      setError("ID resep tidak ditemukan");
+      return;
+    }
+
     const token = localStorage.getItem("token");
     const data = new FormData();
     data.append("title", formData.title);
     data.append("description", formData.description);
     data.append("category_id", formData.category_id);
+
     if (formData.image) {
       data.append("image", formData.image);
     }
 
     try {
+      // Update resep utama
       const recipeResponse = await fetch(`http://127.0.0.1:8000/api/recipes/${id}`, {
         method: "PUT",
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
+        headers: { Authorization: `Bearer ${token}` },
         body: data,
+        mode: 'cors'
       });
 
       if (!recipeResponse.ok) throw new Error("Gagal memperbarui resep");
 
+      // Update bahan-bahan
       await fetch(`http://127.0.0.1:8000/api/recipe-ingredients/${id}`, {
         method: "PUT",
         headers: {
@@ -126,10 +144,14 @@ const UpdateRecipe = () => {
           Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify({
-          ingredients: formData.ingredients.map((ingredient) => ({ ingredient })),
+          ingredients: formData.ingredients.map((ingredient) => ({
+            id: ingredient.id || null, // Kirim id jika ada
+            ingredient: ingredient.ingredient,
+          })),
         }),
       });
 
+      // Update langkah-langkah
       const stepData = new FormData();
       stepData.append("recipe_id", id);
       formData.steps.forEach((step, index) => {
@@ -137,13 +159,14 @@ const UpdateRecipe = () => {
         if (step.image) {
           stepData.append(`steps[${index}][image]`, step.image);
         }
+        if (step.id) {
+          stepData.append(`steps[${index}][id]`, step.id);
+        }
       });
 
       await fetch(`http://127.0.0.1:8000/api/recipe-steps/${id}`, {
         method: "PUT",
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
+        headers: { Authorization: `Bearer ${token}` },
         body: stepData,
       });
 
@@ -153,6 +176,7 @@ const UpdateRecipe = () => {
       setError("Gagal memperbarui resep. Silakan coba lagi.");
     }
   };
+
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#f9f9f9] to-[#f0e6e1] py-12 px-4 pt-40 sm:px-6 lg:px-8">

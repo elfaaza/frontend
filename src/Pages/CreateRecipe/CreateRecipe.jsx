@@ -8,7 +8,7 @@ const CreateRecipe = () => {
   const [formData, setFormData] = useState({
     title: "",
     description: "",
-    category_id: "1",
+    category: "1",
     image: null,
     ingredients: [""],
     steps: [{ instruction: "", image: null }],
@@ -75,19 +75,33 @@ const CreateRecipe = () => {
     const data = new FormData();
     data.append("title", formData.title);
     data.append("description", formData.description);
-    data.append("category_id", formData.category_id);
+    data.append("category", formData.category);
     data.append("chef_id", user.id);
-    data.append("image", formData.image);
+    data.append("image", formData.image); // Pastikan ini adalah objek File
+
+    // Kirim ingredients sebagai array di FormData
+    formData.ingredients.forEach((ingredient, index) => {
+      data.append(`ingredients[${index}][ingredient]`, ingredient);
+    });
+
+    // Kirim steps sebagai array
+    formData.steps.forEach((step, index) => {
+      data.append(`steps[${index}][instruction]`, step.instruction);
+
+      if (step.image) {
+          data.append(`steps[${index}][image]`, step.image);
+      }
+    });
 
     const token = localStorage.getItem("token");
-
     try {
-      const response = await fetch("http://127.0.0.1:8000/api/recipes", {
+      const response = await fetch("http://localhost:8000/api/recipes", {
         method: "POST",
         headers: {
           Authorization: `Bearer ${token}`,
         },
         body: data,
+        mode:'cors'
       });
 
       if (!response.ok) throw new Error("Gagal membuat resep");
@@ -95,6 +109,7 @@ const CreateRecipe = () => {
       navigate("/recipe");
     } catch (error) {
       console.error(error);
+      setError(error.message)
       setError("Terjadi kesalahan. Coba lagi nanti.");
     }
   };
@@ -141,9 +156,9 @@ const CreateRecipe = () => {
             Kategori
           </label>
           <select
-            name="kategori"
+            name="category"
             className="w-full border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-[#a8613b]"
-            value={formData.category_id}
+            value={formData.category}
             onChange={handleChange}
             required
           >

@@ -60,12 +60,10 @@ const DetailEvent = () => {
             alt={event.title}
             className="w-full h-full object-cover transition-transform duration-300 hover:scale-110"
           />
-          <div className="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center">
-            <h1 className="text-4xl font-bold text-white text-center">{event.title}</h1>
-          </div>
         </div>
 
         <div className="p-8">
+        <p className="font-bold text-[#a8613b] text-lg mb-6">{event.title}</p>
           <p className="text-gray-700 text-lg mb-6">{event.description}</p>
           <div className="bg-[#a8613b] text-white p-6 rounded-lg">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">

@@ -107,7 +107,7 @@ const Nav = ({ setShowLogin }) => {
             <ul ref={menu}>
                 <li><Link to="/">Home</Link></li>
                 <li><Link to="/recipe">Recipes</Link></li>
-                <li><Link to="/blogs">Blogs</Link></li>
+                {/* <li><Link to="/blogs">Blogs</Link></li> */}
                 <li><Link to="/event">Event</Link></li>
             </ul>
 
