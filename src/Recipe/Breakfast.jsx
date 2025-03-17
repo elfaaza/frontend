@@ -38,8 +38,15 @@ const Breakfast = ({ searchTerm }) => {
         return response.json();
       })
       .then((data) => {
-        setRecipes(data.data || []);
-        setTotalPages(data.meta?.last_page || 1);
+        console.log("API Response:", data);
+        console.log("Recipes Data:", data.data);
+
+        const filteredData = data.data?.filter(recipe => Number(recipe.category) === 1) || [];
+        console.log("Filtered Recipes:", filteredData);
+
+        setRecipes(filteredData);
+        const newTotalPages = Math.ceil(filteredData.length / data.meta?.per_page) || 1;
+        setTotalPages(newTotalPages);
         setLoading(false);
       })
       .catch(() => {
@@ -58,14 +65,7 @@ const Breakfast = ({ searchTerm }) => {
     <div className="container mx-auto p-4 pt-40 bg-gray-50 min-h-screen">
       <div className="flex justify-between items-center mb-6">
         <h1 className="text-3xl font-bold text-[#a8613b]">Recipe List - Breakfast</h1>
-        {user && (user.role === "chef" || user.role === "admin") && (
-          <Link
-            to="/recipe/create"
-            className="bg-[#a8613b] text-white px-6 py-2 rounded-lg hover:bg-[#8c4c2f] transition duration-300"
-          >
-            + Tambah Resep
-          </Link>
-        )}
+        
       </div>
 
       {error && <p className="text-red-500">{error}</p>}
